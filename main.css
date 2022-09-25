@@ -11,14 +11,20 @@ section {
   flex-direction: column;
   align-items: center;
 }
-section #output-display {
-  width: 300px;
-  height: 40px;
-  margin: 10px 0 0 0;
-  padding: 5px 5px;
-  background-color: lightslategrey;
-  border: 1px solid whitesmoke;
+section .display {
+  font-family: Arial, Helvetica, sans-serif;
   text-align: right;
+  background-color: lightslategrey;
+  padding: 5px 5px;
+  width: 300px;
+}
+section #input-display {
+  height: 20px;
+  margin: 10px 0 0 0;
+  font-size: 12px;
+}
+section #output-display {
+  height: 40px;
 }
 
 .calc-gui {
@@ -29,7 +35,7 @@ section #output-display {
   padding: 15px 15px 15px 15px;
   align-items: center;
 }
-.calc-gui button.extended {
+.calc-gui .extended {
   background-color: lightgray;
   color: black;
   margin: 10px 10px 10px 10px;
