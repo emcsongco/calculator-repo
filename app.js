@@ -1,4 +1,4 @@
-// My Declared Variables
+// VARIABLES
 
 console.log ("Initialize...");
 
@@ -11,6 +11,7 @@ let result;
 let numEntry = "";
 let outputText;
 let dotCt = 0;
+let numberSign;
 
 // Grabbed elements from HTML
 
@@ -20,12 +21,10 @@ const inputText = document.getElementById("input-display");
 const resultText = document.getElementById("output-display");
 const buttonItems = document.querySelectorAll(".input");
 const AC = document.getElementById("clear");
-// const calculate = document.getElementById("calc");
 
 // Functions
 // BASIC CALCULATOR FUNCTIONS: ADD, SUBTRACT, MULTIPLY, DIVIDE
 
-// SAVE RESULT OF CALCULATING TWO NUMBERS
 const addTwoNumbers = (num1,num2) => num1 + num2;
 const subtractTwoNumbers = (num1,num2) => num1 - num2;
 const multiplyTwoNumbers = (num1,num2) => num1 * num2;
@@ -34,11 +33,9 @@ const percentTwoNumbers = (num1,num2) => num1 * (num2/100);
 
 const calculateTwoNumbers = (num1, operator, num2) => {
     console.log (`Calculate... ${num1} ${operator} ${num2}`);
-    
-    // operator;
-    console.log(`Input 1 ${num1} is a ${typeof num1}`)
-    console.log(`Input 2 ${num2} is a ${typeof num2}`)
-    console.log(`Operator is ${operator}`);
+    console.log(`   num1 = ${num1} (${typeof num1})`)
+    console.log(`   num2 =  ${num2} (${typeof num2})`)
+    console.log(`   operator is ${operator} (string)`);
 
     switch (operator) {
         case "+":
@@ -60,32 +57,19 @@ const calculateTwoNumbers = (num1, operator, num2) => {
             break;
     }
     return (result);
-    console.log (result);
+    console.log (`Calculate function result returns ${result}`);
 };
 
+// PERFORM BASIC CALCULATOR FUNCTIONS WITH MOUSE CLICK ENTRIES ONLY
 
-// PERFORM BASIC CALCULATOR MOUSE CLICKS 
+console.log ("Processing...")
 buttonItems.forEach(buttonItem => {
     buttonItem.addEventListener("click", (event) => {
     event.preventDefault();
 
-// TAKE VALUE OF MOUSE CLICKS, SHOW APPENDED NUMBERS ON TOP DISPLAY AREA
+    // TAKE VALUE OF MOUSE CLICKS AND SHOW APPENDED NUMBERS ON TOP DISPLAY AREA
+    
     const outputText = buttonItem.textContent;
-    // console.log(outputText);
-
-    // if outputText [0-9],[.] 
-    
-    //     if operator is null/blank:
-    //        append to string Array number1
-    //     else 
-    //         assign my string array to number2
-    
-    // else if outputText != "="
-    //     assign operator;
-
-    //     else
-    //         pass num1, num2, operator if equal
-        
     switch(outputText) {
         case "0":
         case "1":
@@ -97,58 +81,56 @@ buttonItems.forEach(buttonItem => {
         case "7":
         case "8":
         case "9":
+        case ".":
             numEntry = numEntry + outputText;
             resultText.innerHTML=numEntry;
-            console.log(resultText.innerHTML);
+            console.log(`   resultText.innerHTML = ${resultText.innerHTML}`);
             break;
-        case ".":
-            if (dotCt === 0) {
-                numEntry = numEntry + outputText;
-                resultText.innerHTML = numEntry;
-                dotCt ++;
-                console.log(resultText.innerHTML);
-            } 
-            break;
-        // case "AC": // CLEAR DISPLAY AREA
-        //     numEntry = "";
-        //     inputText.innerHTML = "";
-        //     resultText.innerHTML = numEntry;
-            
+        
+        // TAKE OPERATOR AND CHANGE THE 2 INPUT STRINGS TO NUMBER TYPES 
         case "+":
         case "-": 
         case "*": 
         case "/":
+        case "%":
+            console.log ("Operator processing...")
             operator = outputText;
-            console.log(operator);
+            console.log(`   operator = ${operator}`);
             if (num1Str === "") {
-                num1Str = operator + numEntry;
+                if (operator = "+") {
+                    num1Str = operator + numEntry;
+                } else {
+                    num1Str = numEntry + operator;
+                }    
                 num1 = Number(num1Str);
-                console.log(num1);
-                console.log(num1Str);    
+                console.log(`   num1 = ${num1} (${typeof num1})`);
+                console.log(`   num1Str = ${num1Str} (${typeof num1Str})`);
             } else {
-                num2Str = operator + numEntry;
+                num2Str = numEntry;
                 num2 = Number(num2Str);
                 outputText.innerHTML = num2Str;
-                console.log(num2);
+                console.log(`   num2 = ${num2} (${typeof num2})`);
                 console.log(outputText.innerHTML);    
             }
+            operator = outputText;
             numEntry = numEntry + outputText;
             inputText.innerHTML = numEntry;
             numEntry = "";
+            console.log(`   inputText.innerHTML = ${inputText.innerHTML} (string)`);
             break;
+
+        //CALCULATE RESULTS BASED ON GIVEN 2 NUMBER INPUTS AND THE OPERATOR    
         case "=":
-            if (operator != "=") {
-                num2Str = operator + numEntry;
+                num2Str = numEntry;
                 num2 = Number(num2Str);
-                numEntry = numEntry + outputText;
                 equation = `${num1} ${operator} ${num2}`;
+                numEntry = equation;
                 inputText.innerHTML = equation;
                 resultText.innerHTML = calculateTwoNumbers(num1, operator, num2); 
-                console.log(resultText.innerHTML);
-            }
+                console.log(`Displayed equation for inputText.innerHTML = ${inputText.innerHTML}`);
+                console.log(`Displayed total for resultText.innerHTML = ${resultText.innerHTML}`);
             break;
         case "+/-":
-        case "%":
             break;
         default: 
             break;
@@ -159,14 +141,23 @@ buttonItems.forEach(buttonItem => {
     inputText.innerHTML = "";
     resultText.innerHTML = "";
     numEntry="";
-    return;
-
+    console.log(`Clear = inputText.innerHTML = ${inputText.innerHTML}`)
+    console.log(`Clear = resultText.innerHTML = ${resultText.innerHTML}`)
+    num1=0;
+    num1Str = "";
+    
 })
-// -----------------------------------------------------------
-// const num1 = Number(prompt("First number: "));
-// const operator = prompt("Operator: ");
-// const num2 = Number(prompt("Second number: "));
-// const num1 = 100;
-// const operator = "/";
-// const num2 = 5;
 });
+
+// if outputText [0-9],[.] 
+    
+    //     if operator is null/blank:
+    //        append to string Array number1
+    //     else 
+    //         assign my string array to number2
+    
+    // else if outputText != "="
+    //     assign operator;
+
+    //     else
+    //         pass num1, num2, operator if equal
