@@ -2,7 +2,7 @@
     margin:0;
     padding:0;
     box-sizing: border-box;
-    font-size: 21px;
+    font-size: 22px;
 }
 
 $font-Arial: "Arial, Helvetica, sans-serif";
@@ -15,7 +15,7 @@ $color-black-border: black;
 $color-white-button: whitesmoke;
 $color-orange-operator: orange;
 
-section {
+.display-area {
     // border: 1px solid red;
     text-align: center;
     display:flex;
@@ -31,7 +31,7 @@ section {
         box-shadow:3px 3px $color-darkgray-display;
     }
 
-    #input-display {
+    #display-area__input {
         height:20px;
         margin: 10px 0 0 0;
         font-size: 12px;
@@ -39,7 +39,7 @@ section {
         border-top-right-radius:5px ;    
     }
 
-    #output-display {
+    #display-area__output {
         height: 40px;
     }
 }
@@ -55,14 +55,12 @@ section {
     border-bottom-right-radius:5px ;
     box-shadow:3px 3px $color-darkgray-display;
 
-     
     .extended {
         background-color: $color-lightgray-extended;
         color:$color-black-border;
         margin:10px 10px 10px 10px;
         padding:5px;
         box-shadow:2px 2px;
-    
     }
 
     button {
@@ -72,21 +70,17 @@ section {
         padding:5px;
         width: 40px;
         height: 40px;
-
     }
 }
 
 .input {
     background-color: $color-gray-inputs;
-
 }
 
 #num-zero {
     width:105px;
-
 }
 
 .symbols {
     background-color: $color-orange-operator;
-
 }

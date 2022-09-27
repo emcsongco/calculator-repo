@@ -18,8 +18,8 @@ let outputText;
 
 console.log ("Grab elements...");
 
-const inputText = document.getElementById("input-display");
-const resultText = document.getElementById("output-display");
+const inputText = document.getElementById("display-area__input");
+const resultText = document.getElementById("display-area__output");
 const buttonItems = document.querySelectorAll(".input");
 const AC = document.getElementById("clear");
 const numSign = document.getElementById("posneg-sign");
