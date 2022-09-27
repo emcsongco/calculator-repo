@@ -1,17 +1,18 @@
 // VARIABLES
 
-console.log ("Initialize...");
+console.log ("Initialize parameters...");
 
+let num;
 let num1;
 let num2;
-let operator;
 let num1Str = "";
 let num2Str = "";
+let operator;
 let result;
+let dotClicked = false;
+let numberSign;
 let numEntry = "";
 let outputText;
-let dotCt = 0;
-let numberSign;
 
 // Grabbed elements from HTML
 
@@ -21,6 +22,7 @@ const inputText = document.getElementById("input-display");
 const resultText = document.getElementById("output-display");
 const buttonItems = document.querySelectorAll(".input");
 const AC = document.getElementById("clear");
+const numSign = document.getElementById("posneg-sign");
 
 // Functions
 // BASIC CALCULATOR FUNCTIONS: ADD, SUBTRACT, MULTIPLY, DIVIDE
@@ -30,6 +32,8 @@ const subtractTwoNumbers = (num1,num2) => num1 - num2;
 const multiplyTwoNumbers = (num1,num2) => num1 * num2;
 const divideTwoNumbers  = (num1,num2) => num1 / num2;
 const percentTwoNumbers = (num1,num2) => num1 * (num2/100);
+const posToNeg = (num) =>  -Math.abs(num);
+const NegToPos = (num) =>  -1 * num;
 
 const calculateTwoNumbers = (num1, operator, num2) => {
     console.log (`Calculate... ${num1} ${operator} ${num2}`);
@@ -60,6 +64,8 @@ const calculateTwoNumbers = (num1, operator, num2) => {
     console.log (`Calculate function result returns ${result}`);
 };
 
+
+
 // PERFORM BASIC CALCULATOR FUNCTIONS WITH MOUSE CLICK ENTRIES ONLY
 
 console.log ("Processing...")
@@ -81,10 +87,19 @@ buttonItems.forEach(buttonItem => {
         case "7":
         case "8":
         case "9":
-        case ".":
             numEntry = numEntry + outputText;
             resultText.innerHTML=numEntry;
             console.log(`   resultText.innerHTML = ${resultText.innerHTML}`);
+            break;
+        case ".":
+            if (!dotClicked) {
+                console.log("Entered a dot...");
+                numEntry = numEntry + outputText;
+                resultText.innerHTML=numEntry;
+                console.log(`   resultText.innerHTML = ${resultText.innerHTML}`);
+                dotClicked = true;
+                console.log(dotClicked);
+            }
             break;
         
         // TAKE OPERATOR AND CHANGE THE 2 INPUT STRINGS TO NUMBER TYPES 
@@ -95,6 +110,7 @@ buttonItems.forEach(buttonItem => {
         case "%":
             console.log ("Operator processing...")
             operator = outputText;
+            dotClicked = false;
             console.log(`   operator = ${operator}`);
             if (num1Str === "") {
                 if (operator = "+") {
@@ -118,6 +134,22 @@ buttonItems.forEach(buttonItem => {
             numEntry = "";
             console.log(`   inputText.innerHTML = ${inputText.innerHTML} (string)`);
             break;
+        
+        case "+/-":
+                num = resultText.innerHTML;
+                console.log(`num = ${num} (${typeof num}`) ;
+                num = Number(num);
+                console.log(num);
+                if (num >=0) {
+                    numEntry = posToNeg(num);;
+                } else numEntry = NegToPos(num); 
+                resultText.innerHTML=numEntry;
+
+                console.log(num);
+                console.log(resultText.innerHTML);
+                console.log (numEntry);
+                break;
+
 
         //CALCULATE RESULTS BASED ON GIVEN 2 NUMBER INPUTS AND THE OPERATOR    
         case "=":
@@ -130,23 +162,24 @@ buttonItems.forEach(buttonItem => {
                 console.log(`Displayed equation for inputText.innerHTML = ${inputText.innerHTML}`);
                 console.log(`Displayed total for resultText.innerHTML = ${resultText.innerHTML}`);
             break;
-        case "+/-":
-            break;
         default: 
             break;
     }
 
 });
-    AC.addEventListener("click",(event) => {
-    inputText.innerHTML = "";
-    resultText.innerHTML = "";
-    numEntry="";
-    console.log(`Clear = inputText.innerHTML = ${inputText.innerHTML}`)
-    console.log(`Clear = resultText.innerHTML = ${resultText.innerHTML}`)
-    num1=0;
-    num1Str = "";
-    
+
+AC.addEventListener("click",(event) => {
+inputText.innerHTML = "";
+resultText.innerHTML = "";
+numEntry="";
+console.log(`Clear = inputText.innerHTML = ${inputText.innerHTML}`)
+console.log(`Clear = resultText.innerHTML = ${resultText.innerHTML}`)
+num1=0;
+num1Str = "";
+
+
 })
+
 });
 
 // if outputText [0-9],[.] 
