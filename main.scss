@@ -6,6 +6,14 @@
 }
 
 $font-Arial: "Arial, Helvetica, sans-serif";
+$color-lightgray-display: lightslategrey;
+$color-darkgray-display: darkslategrey;
+$color-pink-inputs: pink;
+$color-gray-inputs: gray;
+$color-lightgray-extended:lightgray;
+$color-black-border: black;
+$color-white-button: whitesmoke;
+$color-orange-operator: orange;
 
 section {
     // border: 1px solid red;
@@ -17,11 +25,10 @@ section {
     .display {
         font-family: $font-Arial;
         text-align: right;
-        background-color: lightslategrey;
+        background-color: $color-lightgray-display;
         padding: 5px 5px;
         width:300px;
-        box-shadow:3px 3px darkslategrey;
-
+        box-shadow:3px 3px $color-darkgray-display;
     }
 
     #input-display {
@@ -38,20 +45,20 @@ section {
 }
 
 .calc-gui {
-    background-color: pink;
+    background-color: $color-pink-inputs;
     width: 300px;
     margin: 5px;
-    border: 2px solid gray;
+    border: 2px solid $color-gray-inputs;
     padding: 15px 15px 15px 15px;
     align-items: center;
     border-bottom-left-radius:5px ;
     border-bottom-right-radius:5px ;
-    box-shadow:3px 3px darkslategrey;
+    box-shadow:3px 3px $color-darkgray-display;
 
      
     .extended {
-        background-color: lightgray;
-        color:black;
+        background-color: $color-lightgray-extended;
+        color:$color-black-border;
         margin:10px 10px 10px 10px;
         padding:5px;
         box-shadow:2px 2px;
@@ -59,8 +66,8 @@ section {
     }
 
     button {
-        color:whitesmoke;
-        box-shadow:2px 2px black;
+        color:$color-white-button;
+        box-shadow:2px 2px $color-black-border;
         margin:10px 10px 10px 10px;
         padding:5px;
         width: 40px;
@@ -70,7 +77,7 @@ section {
 }
 
 .input {
-    background-color: gray;
+    background-color: $color-gray-inputs;
 
 }
 
@@ -80,6 +87,6 @@ section {
 }
 
 .symbols {
-    background-color: orange;
+    background-color: $color-orange-operator;
 
 }

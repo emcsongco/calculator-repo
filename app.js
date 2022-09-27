@@ -181,16 +181,3 @@ num1Str = "";
 })
 
 });
-
-// if outputText [0-9],[.] 
-    
-    //     if operator is null/blank:
-    //        append to string Array number1
-    //     else 
-    //         assign my string array to number2
-    
-    // else if outputText != "="
-    //     assign operator;
-
-    //     else
-    //         pass num1, num2, operator if equal
